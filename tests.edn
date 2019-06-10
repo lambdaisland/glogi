@@ -1,4 +1,4 @@
 #kaocha/v1
-{:plugins [:notifier
-           :print-invocations
-           :profiling]}
+{:plugins [:kaocha.plugin/notifier
+           :kaocha.plugin/print-invocations
+           :kaocha.plugin/profiling]}
