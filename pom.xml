@@ -17,14 +17,12 @@
       <version>1.10.520</version>
     </dependency>
   </dependencies>
-
   <scm>
     <url>https://github.com/lambdaisland/glogi</url>
     <connection>scm:git:git://github.com/lambdaisland/glogi.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/glogi.git</developerConnection>
     <tag>523da905fbc8bd94f11c3a7c1c19bc0a307e3f07</tag>
   </scm>
-
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -50,7 +48,6 @@
       </plugin>
     </plugins>
   </build>
-
   <repositories>
     <repository>
       <id>clojars</id>
