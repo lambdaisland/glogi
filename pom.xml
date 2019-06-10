@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>glogi</groupId>
   <artifactId>glogi</artifactId>
-  <version>0.0-4</version>
+  <version>0.0-6</version>
   <name>glogi</name>
   <dependencies>
     <dependency>
@@ -17,15 +17,40 @@
       <version>1.10.520</version>
     </dependency>
   </dependencies>
+
   <scm>
     <url>https://github.com/lambdaisland/glogi</url>
     <connection>scm:git:git://github.com/lambdaisland/glogi.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/glogi.git</developerConnection>
-    <tag>519f1d5418127630f4659ae4b2bcaa28d37f3ab5</tag>
+    <tag>523da905fbc8bd94f11c3a7c1c19bc0a307e3f07</tag>
   </scm>
+
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+      </resource>
+      <resource>
+        <directory>resources</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Git-Revision>519f1d5418127630f4659ae4b2bcaa28d37f3ab5</Git-Revision>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
+
   <repositories>
     <repository>
       <id>clojars</id>
