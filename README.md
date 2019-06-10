@@ -6,6 +6,8 @@
 
 A thin wrapper around `goog.log` inspired by `pedestal.log`.
 
+For more info see the accompanying blog post: [ClojureScript logging with goog.log](https://lambdaisland.com/blog/2019-06-10-goog-log)
+
 <!-- license-epl -->
 ## License
 
