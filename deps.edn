@@ -1,0 +1,11 @@
+{:paths ["src" "test" "resources"]
+ :deps  {org.clojure/clojure       {:mvn/version "1.10.0"}
+         org.clojure/clojurescript {:mvn/version "1.10.520"}
+         com.bhauman/figwheel-main {:local/root "/home/arne/github/figwheel-main"}}
+
+ :aliases
+ {:dev
+  {}
+
+  :test
+  {:extra-deps {lambdaisland/kaocha {:mvn/version "0.0-409"}}}}}

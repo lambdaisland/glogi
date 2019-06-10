@@ -1,0 +1,7 @@
+^{:watch-dirs [#_"test" "src"]
+  ;;:css-dirs ["resources/public/css"]
+  ;;:auto-testing true
+  }
+{:main lambdaisland.glogi.demo
+ :closure-defines {goog.DEBUG false
+                   goog.debug.LOGGING_ENABLED true}}
