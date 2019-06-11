@@ -40,6 +40,7 @@
   ;; doesn't do this if a LogBuffer is active. This causes a single LogRecord
   ;; instance to constantly be reused, which is fine though since we convert it
   ;; to an immutable value in add-handler.
-  (set! LogBuffer/CAPACITY 2)
+  (when-not (LogBuffer/isBufferingEnabled)
+    (set! LogBuffer/CAPACITY 2))
 
   (glogi/add-handler-once console-log))
