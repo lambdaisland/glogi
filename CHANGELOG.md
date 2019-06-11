@@ -1,10 +1,8 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Fix glogi.console when devtools isn't available
 
 # 0.0-18 (2019-06-11 / a27f7fc)
 

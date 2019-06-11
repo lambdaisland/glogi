@@ -13,7 +13,8 @@
     "log"))
 
 (defn devtools-installed? []
-  (js/devtools.core.installed_QMARK_))
+  (and (exists? js/devtools.core.installed_QMARK_)
+       (js/devtools.core.installed_QMARK_)))
 
 (defn format [{:keys [logger-name message exception]}]
   [(str "[" logger-name "]")
