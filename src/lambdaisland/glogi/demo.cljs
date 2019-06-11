@@ -1,16 +1,14 @@
 (ns lambdaisland.glogi.demo
-  (:require [lambdaisland.glogi :as glogi]))
+  (:require [lambdaisland.glogi :as glogi]
+            [lambdaisland.glogi.console :as console]))
 
-(glogi/enable-console-logging!)
-(glogi/add-handler (comp js/console.log pr-str))
+(console/install!)
+;; (glogi/enable-console-logging!)
 
-(glogi/warn :msg "oh no!")
+(glogi/warn :msg "oh no!" )
 
 (try
   (throw (js/Error. "oh no!"))
   (catch js/Error e
     (glogi/warn :msg "so far so good"
-                :exception e
-                ::glogi/formatter (comp pr-str seq)
-                ::glogi/logger "foo.bar")
-    ))
+                :exception e)))

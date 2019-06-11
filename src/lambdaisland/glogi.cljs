@@ -3,20 +3,23 @@
             [goog.debug.Logger :as Logger]
             [goog.debug.Logger.Level :as Level]
             [goog.debug.Console :as Console]
-            [clojure.string :as str])
-  (:import [goog.debug Console FancyWindow DivConsole LogRecord])
+            [goog.array :as array]
+            [clojure.string :as str]
+            [goog.object :as gobj])
+  (:import [goog.debug Logger Console FancyWindow DivConsole LogRecord]
+           [goog.debug.Logger Level])
   (:require-macros [lambdaisland.glogi]))
 
 (defn logger
   "Get a logger by name, and optionally set its level."
-  ([name]
+  (^Logger [name]
    (glog/getLogger name))
-  ([name level]
+  (^Logger [name level]
    (glog/getLogger name level)))
 
-(def root-logger (logger ""))
+(def ^Logger root-logger (logger ""))
 
-(def level
+(def levels
   {:off     Level/OFF
    :shout   Level/SHOUT
    :severe  Level/SEVERE
@@ -34,6 +37,14 @@
    :warn  Level/WARNING
    :error Level/SEVERE})
 
+(defn level ^Level [lvl]
+  (get levels lvl))
+
+(defn level-value
+  "Get the numeric value of a log level (keyword)."
+  [lvl]
+  (.-value (level lvl)))
+
 (defn log
   "Output a log message to the given logger, optionally with an exception to be
   logged."
@@ -49,24 +60,34 @@
   (.setLevel (logger name) (level lvl)))
 
 (defn enable-console-logging!
-  "Log to the browser console"
+  "Log to the browser console. This uses goog.debug.Console directly,
+  use [lambdaisland.glogi.console/install!] for a version that plays nicely with
+  cljs-devtools."
   []
-  (.setCapturing (Console.) true))
+  (when-let [instance Console/instance]
+    (.setCapturing instance true)
+    (let [instance (Console.)]
+      (set! Console/instance instance)
+      (.setCapturing instance)))
+  nil)
 
 (defn console-autoinstall!
-  "Log to the browser console if the browser location contains Debug=true"
+  "Log to the browser console if the browser location contains Debug=true."
   []
-  (Console/autoInstall))
+  (Console/autoInstall)
+  nil)
 
 (defn popup-logger-window!
-  "Pop up a browser window which will display log messages."
+  "Pop up a browser window which will display log messages. Returns the FancyWindow instance."
   []
-  (.setEnabled (FancyWindow.) true))
+  (doto (FancyWindow.)
+    (.setEnabled true)))
 
 (defn log-to-div!
-  "Log messages to an element on the page."
+  "Log messages to an element on the page. Returns the DivConsole instance."
   [element]
-  (.setCapturing (DivConsole. element) true))
+  (doto (DivConsole. element)
+    (.setCapturing  true)))
 
 (defn add-handler
   "Add a log handler to the given logger, or to the root logger if no logger is
@@ -75,12 +96,26 @@
    (add-handler "" handler-fn))
   ([name handler-fn]
    (.addHandler (logger name)
-                (fn [^LogRecord record]
-                  (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
-                               :time           (.-time_ record)
-                               :level          (keyword (str/lower-case (.-name (.-level_ record))))
-                               :message        (.-msg_ record)
-                               :logger-name    (.-loggerName_ record)
-                               :exception      (.-exception_ record)})))))
+                (doto
+                    (fn [^LogRecord record]
+                      (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
+                                   :time           (.-time_ record)
+                                   :level          (keyword (str/lower-case (.-name (.-level_ record))))
+                                   :message        (.-msg_ record)
+                                   :logger-name    (.-loggerName_ record)
+                                   :exception      (.-exception_ record)}))
+                  (gobj/set "handler-fn" handler-fn)))))
 
-(glog/warning (glog/getLogger "lambdaisland.glogi") "oh no!")
+(defn remove-handler
+  ([handler-fn]
+   (remove-handler "" handler-fn))
+  ([name handler-fn]
+   (.removeHandler (logger name) handler-fn)))
+
+(defn add-handler-once
+  ([handler-fn]
+   (add-handler-once "" handler-fn))
+  ([name handler-fn]
+   (when-not (some (comp #{handler-fn} #(gobj/get % "handler-fn"))
+                   (.-handlers_ (logger name)))
+     (add-handler name handler-fn))))
