@@ -14,6 +14,9 @@
 (defmacro trace [& keyvals]
   (log-expr &form :trace keyvals))
 
+(defmacro info [& keyvals]
+  (log-expr &form :info keyvals))
+
 (defmacro debug [& keyvals]
   (log-expr &form :debug keyvals))
 

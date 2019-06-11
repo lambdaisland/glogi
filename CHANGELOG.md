@@ -5,6 +5,7 @@
 - `lambdaisland.glogi.console` provides an alternative to `goog.debug.Console`,
   with the main benefit that it will log full data structures, thus playing
   nicely with cljs-devtools
+- Added an `info` macro for compat with pedestal.
 
 ## Changed
 
