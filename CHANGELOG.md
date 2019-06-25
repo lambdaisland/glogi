@@ -2,9 +2,11 @@
 
 ## Added
 
+- Added `set-level` for convenience
+
 ## Fixed
 
-## Changed
+- Fix assertion in `set-level`
 
 # 0.0-22 (2019-06-11 / 0d56b02)
 

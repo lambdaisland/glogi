@@ -56,8 +56,13 @@
 (defn set-level
   "Set the level (a keyword) of the given logger, identified by name."
   [name lvl]
-  (assert (contains? level lvl))
+  (assert (contains? levels lvl))
   (.setLevel (logger name) (level lvl)))
+
+(defn set-levels
+  "Convenience function for setting several levels at one. Takes a map of logger name => level keyword."
+  [lvls]
+  (run! set-level lvls))
 
 (defn enable-console-logging!
   "Log to the browser console. This uses goog.debug.Console directly,
