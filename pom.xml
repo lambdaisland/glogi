@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>glogi</artifactId>
-  <version>0.0-22</version>
+  <version>0.0-25</version>
   <name>glogi</name>
   <dependencies>
     <dependency>
@@ -21,7 +21,7 @@
     <url>https://github.com/lambdaisland/glogi</url>
     <connection>scm:git:git://github.com/lambdaisland/glogi.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/glogi.git</developerConnection>
-    <tag>78bb6851e3ddb14d3a5cbaec460d563db0245010</tag>
+    <tag>fb57110675a75de485eda58d4182246be681caba</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -41,7 +41,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Git-Revision>78bb6851e3ddb14d3a5cbaec460d563db0245010</Git-Revision>
+              <Git-Revision>fb57110675a75de485eda58d4182246be681caba</Git-Revision>
             </manifestEntries>
           </archive>
         </configuration>
