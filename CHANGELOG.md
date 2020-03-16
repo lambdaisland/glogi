@@ -1,10 +1,9 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Got rid of the `LogBuffer/CAPACITY` hack, to prevent issues with advanced
+  compilation
 
 # 0.0-25 (2019-06-25 / 0e226a8)
 

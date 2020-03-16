@@ -37,11 +37,4 @@
   (when-let [instance Console/instance]
     (.setCapturing instance false))
 
-  ;; hax0r! goog.debug.Logger normally calls String on the log message, but it
-  ;; doesn't do this if a LogBuffer is active. This causes a single LogRecord
-  ;; instance to constantly be reused, which is fine though since we convert it
-  ;; to an immutable value in add-handler.
-  (when-not (LogBuffer/isBufferingEnabled)
-    (set! LogBuffer/CAPACITY 2))
-
   (glogi/add-handler-once console-log))
