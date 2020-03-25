@@ -10,12 +10,30 @@
            [goog.debug.Logger Level])
   (:require-macros [lambdaisland.glogi]))
 
+(defn name-str [x]
+  (cond
+    (= :glogi/root x)
+    ""
+
+    (string? x)
+    x
+
+    (simple-ident? x)
+    (name x)
+
+    (qualified-ident? x)
+    (str (namespace x) "/" (name x))
+
+    :else
+    (str x)))
+
 (defn logger
-  "Get a logger by name, and optionally set its level."
-  (^Logger [name]
-   (glog/getLogger name))
-  (^Logger [name level]
-   (glog/getLogger name level)))
+  "Get a logger by name, and optionally set its level. Name can be a string,
+  keyword, or symbol. The special keyword :glogi/root returns the root logger."
+  (^Logger [n]
+   (glog/getLogger (name-str n)))
+  (^Logger [n level]
+   (glog/getLogger (name-str name) level)))
 
 (def ^Logger root-logger (logger ""))
 
@@ -69,7 +87,8 @@
 (defn set-levels
   "Convenience function for setting several levels at one. Takes a map of logger name => level keyword."
   [lvls]
-  (run! set-level lvls))
+  (doseq [[logger level] lvls]
+    (set-level logger level)))
 
 (defn enable-console-logging!
   "Log to the browser console. This uses goog.debug.Console directly,

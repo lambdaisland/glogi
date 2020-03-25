@@ -2,9 +2,12 @@
 
 ## Added
 
+- Added the ability to use keywords or symbols to look up a logger, or the
+  special `:glogi/root` to find the root logger.
+
 ## Fixed
 
-## Changed
+- Fixed `set-levels` to match its docstring. Takes a map.
 
 # 0.0-29 (2020-03-25 / 991866f)
 
