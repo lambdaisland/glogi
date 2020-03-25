@@ -15,13 +15,13 @@ Many thanks to [Nextjournal](https://nextjournal.com/) for coming up with an int
 deps.edn
 
 ```
-lambdaisland.glogi {:mvn/version "0.0-25"}
+lambdaisland/glogi {:mvn/version "0.0-29"}
 ```
 
 project.clj
 
 ```
-[lambdaisland.glogi "0.0-25"]
+[lambdaisland/glogi "0.0-29"]
 ```
 
 ## Quickstart
