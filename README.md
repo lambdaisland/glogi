@@ -10,6 +10,35 @@ For more info see the accompanying blog post: [ClojureScript logging with goog.l
 
 Many thanks to [Nextjournal](https://nextjournal.com/) for coming up with an interesting problem, and giving me the opportunity to explore and solve it.
 
+## Installation
+
+deps.edn
+
+```
+lambdaisland.glogi {:mvn/version "0.0-25"}
+```
+
+project.clj
+
+```
+[lambdaisland.glogi "0.0-25"]
+```
+
+## Quickstart
+
+```clojure
+(ns my.app
+  (:require [lambdaisland.glogi :as log]
+            [lambdaisland.glogi.console :as glogi-console]))
+
+(defonce install-logger
+  (glogi-console/install!)))
+
+(log/info :hello {:message "Hello, world!"})
+```
+
+
+
 <!-- license-epl -->
 ## License
 
