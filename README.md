@@ -21,13 +21,13 @@ If you find value in our work please consider [becoming a backer on Open Collect
 deps.edn
 
 ```
-lambdaisland/glogi {:mvn/version "0.0-33"}
+lambdaisland/glogi {:mvn/version "0.0-36"}
 ```
 
 project.clj
 
 ```
-[lambdaisland/glogi "0.0-33"]
+[lambdaisland/glogi "0.0-36"]
 ```
 
 ## Quickstart
