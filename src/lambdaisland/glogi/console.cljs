@@ -4,8 +4,8 @@
             [goog.debug.LogBuffer :as LogBuffer]
             [goog.debug.Console :as Console]))
 
-(defn log-method [{:keys [value] :as level}]
-  (condp #(>= %2 %1) value
+(defn log-method [level]
+  (condp #(>= %2 %1) (glogi/level-value level)
     (glogi/level-value :severe)  "error"
     (glogi/level-value :warning) "warn"
     (glogi/level-value :info)    "info"

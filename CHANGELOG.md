@@ -2,9 +2,14 @@
 
 ## Added
 
+- Added `spy` macro, logs the expression and its return value, returns the value
+- Added logging macros corresponding with goog.log log levels: `shout`,
+  `severe`, `fine`, `finer`, `finest`
+
 ## Fixed
 
-## Changed
+- Use the correct console log method (log, error, warn, info) based on the log
+  level
 
 # 0.0-33 (2020-03-25 / cd9df6b)
 
