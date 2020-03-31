@@ -1,8 +1,14 @@
 (ns lambdaisland.glogi.console
   (:require [lambdaisland.glogi :as glogi]
+            [lambdaisland.glogi.print :as print]
             [goog.object :as gobj]
             [goog.debug.LogBuffer :as LogBuffer]
             [goog.debug.Console :as Console]))
+
+(goog-define colorize "true")
+
+(defn colorize? []
+  (= colorize "true"))
 
 (defn log-method [level]
   (condp #(>= %2 %1) (glogi/level-value level)
@@ -16,11 +22,12 @@
   (and (exists? js/devtools.core.installed_QMARK_)
        (js/devtools.core.installed_QMARK_)))
 
-(defn format [{:keys [logger-name message exception]}]
-  [(str "[" logger-name "]")
-   (if (devtools-installed?)
-     message
-     (pr-str message))])
+(defn format [{:keys [level logger-name message exception]}]
+  (if (devtools-installed?)
+    [(str "[" logger-name "]") message]
+    (if (colorize?)
+      (print/format level logger-name message)
+      [(str "[" logger-name "]") (pr-str message)])))
 
 (defonce console-log
   (fn [{:keys [logger-name level exception] :as record}]

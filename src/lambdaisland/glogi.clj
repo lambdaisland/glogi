@@ -11,8 +11,17 @@
                 (assoc :line (:line (meta form)))))
           ~(:exception keyvals-map))))
 
-(defmacro trace [& keyvals]
-  (log-expr &form :trace keyvals))
+(defmacro shout [& keyvals]
+  (log-expr &form :shout keyvals))
+
+(defmacro error [& keyvals]
+  (log-expr &form :error keyvals))
+
+(defmacro severe [& keyvals]
+  (log-expr &form :severe keyvals))
+
+(defmacro warn [& keyvals]
+  (log-expr &form :warn keyvals))
 
 (defmacro info [& keyvals]
   (log-expr &form :info keyvals))
@@ -20,19 +29,11 @@
 (defmacro debug [& keyvals]
   (log-expr &form :debug keyvals))
 
-(defmacro warn [& keyvals]
-  (log-expr &form :warn keyvals))
+(defmacro config [& keyvals]
+  (log-expr &form :config keyvals))
 
-(defmacro error [& keyvals]
-  (log-expr &form :error keyvals))
-
-;; goog.log specific
-
-(defmacro shout [& keyvals]
-  (log-expr &form :shout keyvals))
-
-(defmacro severe [& keyvals]
-  (log-expr &form :severe keyvals))
+(defmacro trace [& keyvals]
+  (log-expr &form :trace keyvals))
 
 (defmacro fine [& keyvals]
   (log-expr &form :fine keyvals))

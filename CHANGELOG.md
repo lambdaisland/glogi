@@ -2,9 +2,9 @@
 
 ## Added
 
-## Fixed
-
-## Changed
+- Added colorization of Clojure data structures, for places where devtools is
+  not available
+- Added the `config` macro, which logs to the corresponding log level
 
 # 0.0-36 (2020-03-30 / e2606fb)
 
