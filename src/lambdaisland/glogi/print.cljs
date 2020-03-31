@@ -85,13 +85,11 @@
     (vector? value)
     (as-> res %
       (add % "[" :brown)
-      (reduce print-console-log-css % (interpose ::separator value))
       (add % "]" :brown))
 
     (seq? value)
     (as-> res %
       (add % "(" :brown)
-      (reduce print-console-log-css % (interpose ::separator value))
       (add % ")" :brown))
 
     (satisfies? IAtom value)
