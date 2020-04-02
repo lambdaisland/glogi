@@ -1,4 +1,4 @@
-# Unreleased
+# 1.0-47 (2020-04-02 / 35d7fff)
 
 ## Added
 
