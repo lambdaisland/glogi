@@ -1,5 +1,8 @@
 (ns lambdaisland.glogi.print
-  (:require [lambdaisland.glogi :as glogi]))
+  (:require [lambdaisland.glogi :as glogi]
+            [goog.object :as gobj]))
+
+;; https://github.com/chriskempson/base16-tomorrow-scheme/blob/master/tomorrow.yaml
 
 (def colors
   {:white    "#ffffff"
@@ -20,12 +23,15 @@
    :brown    "#a3685a"})
 
 (defn level-color [level]
-  (condp #(>= %2 %1) (glogi/level-value level)
+  (condp <= (glogi/level-value level)
     (glogi/level-value :severe)  :red
     (glogi/level-value :warning) :orange
     (glogi/level-value :info)    :blue
     (glogi/level-value :config)  :green
-    :gray4))
+    (glogi/level-value :fine)    :yellow
+    (glogi/level-value :finer)   :gray3
+    (glogi/level-value :finest)  :gray4
+    :gray2))
 
 (defn add
   ([[res res-css] s]
@@ -85,25 +91,37 @@
     (vector? value)
     (as-> res %
       (add % "[" :brown)
+      (reduce print-console-log-css % value)
       (add % "]" :brown))
 
     (seq? value)
     (as-> res %
       (add % "(" :brown)
+      (reduce print-console-log-css % value)
       (add % ")" :brown))
 
     (satisfies? IAtom value)
     (-> res
-        (add "#atom " :black)
+        (add "#atom " :brown)
         (recur @value))
 
     (uuid? value)
     (-> res
-        (add "#uuid " :black)
+        (add "#uuid " :brown)
         (recur (str value)))
 
+    (object? value)
+    (-> res
+        (add "#js " :brown)
+        (recur (reduce #(assoc %1 (keyword %2) (gobj/get value %2)) {} (js/Object.keys value))))
+
+    (array? value)
+    (-> res
+        (add "#js " :brown)
+        (recur (into [] value)))
+
     :else
-    (add res (pr-str value))))
+    (add res (pr-str value) :gray5)))
 
 (defn format [level logger-name value]
   (let [color (level-color level)

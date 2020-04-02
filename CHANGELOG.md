@@ -2,9 +2,17 @@
 
 ## Added
 
+- Added colored printing of objects and arrays
+
 ## Fixed
 
+- Fixed colored printing of seqs and vectors
+
 ## Changed
+
+- Better mapping of log levels to log methods and colors. `:trace` is now an
+  alias for `:finer`, `:debug` for `:fine` (before `:trace` = `:fine` , `:debug`
+  = `:config`)
 
 # 1.0-41 (2020-03-31 / ab9f97f)
 

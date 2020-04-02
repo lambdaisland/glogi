@@ -115,20 +115,48 @@ them afterwards, you can add increasingly detailed levels of logging instead.
 Later when you find yourself in the same waters you can dial the verbosity up or
 down as you see fit.
 
-The log levels that Glogi understands are, in increasing level of loudness:
+Glogi is based on goog.log, and so it understand the log levels that goog.log
+provides. Glogi also aims to be at least partially API compatible with
+pedestal.log, and so we provide extra log levels that internally map to goog.log
+levels.
 
-- finest
-- finer
-- trace
-- config
-- debug
-- info
-- warn
-- error
-- shout
+| pedestal | goog.log |    value | description                                                  |
+|----------|----------|----------|--------------------------------------------------------------|
+|          | :off     | Infinity | Special value to disable logging                             |
+|          | :shout   |     1200 | Critical error                                               |
+| :error   | :severe  |     1000 | Serious failure                                              |
+| :warn    | :warning |      900 | Potential problem, but program continues                     |
+|          | :info    |      800 | Informational message, e.g. to make background tasks visible |
+|          | :config  |      700 | Configuration info                                           |
+| :debug   | :fine    |      500 | Step-by-step debug messages                                  |
+| :trace   | :finer   |      400 | More verbose, detailed tracing messages                      |
+|          | :finest  |      300 | Highly verbose and detailed tracing                          |
+|          | :all     |        0 | Special value to show all log messages                       |
 
 There are also two special levels, `:all` and `:off`, which you can use in
 `set-levels` to turn logging up to the maximum, or turn it off instead.
+
+It is recommended to use a consistent set of logging methods, for instance to
+use only the pedestal version, possibly augmented by the goog.log levels that
+don't have a pedestal equivalent.
+
+for instance:
+
+``` clojure
+(log/shout ,,,)
+(log/severe ,,,)
+(log/error ,,,)
+(log/warn ,,,)
+(log/info ,,,)
+(log/config ,,,)
+(log/debug ,,,)
+(log/trace ,,,)
+(log/finest ,,,)
+```
+
+If you are using `lambdaisland.glogi.console`, then these levels will also
+influence with `js/console` method is used, as well as the color used to print
+the namespace name.
 
 ### Spy
 
@@ -212,10 +240,10 @@ we may still consider making breaking changes, if there is consensus that the
 changes are justified.
 <!-- /contributing -->
 
-<!-- license-epl -->
+<!-- license-mpl -->
 ## License
-
-Copyright &copy; 2019-2020 Arne Brasseur and Contributors
-
-Available under the terms of the Eclipse Public License 1.0, see LICENSE.txt
+&nbsp;
+Copyright &copy; 2019-2020 Arne Brasseur
+&nbsp;
+Licensed under the term of the Mozilla Public License 2.0, see LICENSE.
 <!-- /license-epl -->

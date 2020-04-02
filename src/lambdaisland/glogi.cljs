@@ -28,7 +28,7 @@
     (str x)))
 
 (defn logger
-  "Get a logger by name, and optionally set its level. Name can be a string,
+  "Get a logger by name, and optionally set its level. Name can be a string
   keyword, or symbol. The special keyword :glogi/root returns the root logger."
   (^Logger [n]
    (glog/getLogger (name-str n)))
@@ -50,8 +50,8 @@
    :all     Level/ALL
 
    ;; pedestal style
-   :trace Level/FINE
-   :debug Level/CONFIG
+   :trace Level/FINER
+   :debug Level/FINE
    :warn  Level/WARNING
    :error Level/SEVERE})
 
