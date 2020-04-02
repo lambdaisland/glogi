@@ -46,8 +46,11 @@
 
 (defn print-console-log-css [res value]
   (cond
-    (= ::separator value)
-    (add res ", ")
+    (= ::comma value)
+    (add res ", " :gray2)
+
+    (= ::space value)
+    (add res " ")
 
     (keyword? value)
     (add res value :blue)
@@ -56,7 +59,7 @@
     (add res value :green)
 
     (string? value)
-    (add res (pr-str value) :orange)
+    (add res (pr-str value) :turqoise)
 
     (map-entry? value)
     (-> res
@@ -68,7 +71,7 @@
         (instance? cljs.core/PersistentHashMap value))
     (as-> res %
       (add % "{" :purple)
-      (reduce print-console-log-css % (interpose ::separator value))
+      (reduce print-console-log-css % (interpose ::comma value))
       (add % "}" :purple))
 
     (map? value) ;; non-standard map implementation
@@ -77,27 +80,32 @@
                             n (.-name t)]
                         (if (empty? n)
                           (pr-str t)
-                          n)) " ") :black)
+                          n)) " ") :brown)
       (add % "{" :purple)
-      (reduce print-console-log-css % (interpose ::separator value))
+      (reduce print-console-log-css % (interpose ::comma value))
       (add % "}" :purple))
 
     (set? value)
     (as-> res %
       (add % "#{" :purple)
-      (reduce print-console-log-css % (interpose ::separator value))
+      (reduce print-console-log-css % (interpose ::space value))
       (add % "}" :purple))
 
     (vector? value)
     (as-> res %
-      (add % "[" :brown)
-      (reduce print-console-log-css % value)
-      (add % "]" :brown))
+      (add % "[" :purple)
+      (reduce print-console-log-css % (interpose ::space value))
+      (add % "]" :purple))
+
+    (instance? cljs.core.PersistentQueue value)
+    (-> res
+        (add "#queue " :brown)
+        (recur (into [] value)))
 
     (seq? value)
     (as-> res %
       (add % "(" :brown)
-      (reduce print-console-log-css % value)
+      (reduce print-console-log-css % (interpose ::space value))
       (add % ")" :brown))
 
     (satisfies? IAtom value)

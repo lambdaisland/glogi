@@ -2,9 +2,7 @@
 
 ## Added
 
-## Fixed
-
-## Changed
+- Print support for cljs.core.PersistentQueue
 
 # 1.0-44 (2020-04-02 / 5a377e7)
 
