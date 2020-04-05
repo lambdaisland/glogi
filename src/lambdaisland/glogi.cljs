@@ -33,7 +33,7 @@
   (^Logger [n]
    (glog/getLogger (name-str n)))
   (^Logger [n level]
-   (glog/getLogger (name-str name) level)))
+   (glog/getLogger (name-str n) level)))
 
 (def ^Logger root-logger (logger ""))
 
