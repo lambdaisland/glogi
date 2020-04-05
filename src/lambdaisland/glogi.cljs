@@ -75,8 +75,10 @@
   ([name lvl message]
    (log name lvl message nil))
   ([name lvl message exception]
-   (.logRecord (logger name)
-               (make-log-record (level lvl) message name exception))))
+   (when glog/ENABLED
+     (if-let [l (logger name)]
+       (.logRecord l
+                   (make-log-record (level lvl) message name exception))))))
 
 (defn set-level
   "Set the level (a keyword) of the given logger, identified by name."
