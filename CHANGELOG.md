@@ -1,10 +1,9 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Fix incorrect variable reference in `logger`
+- Honor goog.log.ENABLED, important for release builds
 
 # 1.0-47 (2020-04-02 / 35d7fff)
 

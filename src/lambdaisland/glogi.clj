@@ -3,13 +3,14 @@
 (defn- log-expr [form level keyvals]
   (let [keyvals-map (apply array-map keyvals)
         formatter (::formatter keyvals-map 'identity)]
-    `(log ~(::logger keyvals-map (str *ns*))
-          ~level
-          (~formatter
-           ~(-> keyvals-map
-                (dissoc ::logger)
-                (assoc :line (:line (meta form)))))
-          ~(:exception keyvals-map))))
+    `(when glog/ENABLED
+       (log ~(::logger keyvals-map (str *ns*))
+            ~level
+            (~formatter
+             ~(-> keyvals-map
+                  (dissoc ::logger)
+                  (assoc :line (:line (meta form)))))
+            ~(:exception keyvals-map)))))
 
 (defmacro shout [& keyvals]
   (log-expr &form :shout keyvals))
