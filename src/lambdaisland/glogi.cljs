@@ -76,7 +76,7 @@
    (log name lvl message nil))
   ([name lvl message exception]
    (when glog/ENABLED
-     (if-let [l (logger name)]
+     (when-let [l (logger name)]
        (.logRecord l
                    (make-log-record (level lvl) message name exception))))))
 
@@ -84,7 +84,7 @@
   "Set the level (a keyword) of the given logger, identified by name."
   [name lvl]
   (assert (contains? levels lvl))
-  (.setLevel (logger name) (level lvl)))
+  (some-> (logger name) (.setLevel (level lvl))))
 
 (defn set-levels
   "Convenience function for setting several levels at one. Takes a map of logger name => level keyword."
@@ -128,27 +128,29 @@
   ([handler-fn]
    (add-handler "" handler-fn))
   ([name handler-fn]
-   (.addHandler (logger name)
-                (doto
-                    (fn [^LogRecord record]
-                      (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
-                                   :time           (.-time_ record)
-                                   :level          (keyword (str/lower-case (.-name (.-level_ record))))
-                                   :message        (.-msg_ record)
-                                   :logger-name    (.-loggerName_ record)
-                                   :exception      (.-exception_ record)}))
-                  (gobj/set "handler-fn" handler-fn)))))
+   (some-> (logger name)
+           (.addHandler
+             (doto
+               (fn [^LogRecord record]
+                 (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
+                              :time (.-time_ record)
+                              :level (keyword (str/lower-case (.-name (.-level_ record))))
+                              :message (.-msg_ record)
+                              :logger-name (.-loggerName_ record)
+                              :exception (.-exception_ record)}))
+               (gobj/set "handler-fn" handler-fn))))))
 
 (defn remove-handler
   ([handler-fn]
    (remove-handler "" handler-fn))
   ([name handler-fn]
-   (.removeHandler (logger name) handler-fn)))
+   (some-> (logger name) (.removeHandler handler-fn))))
 
 (defn add-handler-once
   ([handler-fn]
    (add-handler-once "" handler-fn))
   ([name handler-fn]
-   (when-not (some (comp #{handler-fn} #(gobj/get % "handler-fn"))
-                   (.-handlers_ (logger name)))
-     (add-handler name handler-fn))))
+   (when-let [l (logger name)]
+     (when-not (some (comp #{handler-fn} #(gobj/get % "handler-fn"))
+                     (.-handlers_ l))
+       (add-handler name handler-fn)))))
