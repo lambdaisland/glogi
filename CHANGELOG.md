@@ -1,10 +1,8 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- For for when goog.log.ENABLED is false (for use in prod builds)
 
 # 1.0-55 (2020-04-07 / 592208d)
 
