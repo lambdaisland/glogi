@@ -2,9 +2,10 @@
 
 ## Added
 
-## Fixed
-
-## Changed
+- the Closure constant `lambdaisland.glogi.console.colorize` can now take four
+  possible values, `"true"` (use `console.log` CSS formatting), `"false"` (log
+  plain text), `"raw"`, log objects directly (good for cljs-devtools), or
+  `"auto"` (detect most suitable option)
 
 # 1.0-60 (2020-04-15 / 71bea10)
 

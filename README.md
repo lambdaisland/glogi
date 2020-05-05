@@ -185,6 +185,23 @@ Two keywords have a special meaning in logging calls.
   get a proper stacktrace in the browser console
 - `:lambdaisland.glogi/logger` name of the logger to use, defaults to `(str *ns*)`
 
+### Controlling colorization
+
+When using `lambdaisland.glogi.console/install!` it will try to detect what the
+best logging strategy is for your environment.
+
+- if cljs-devtools is detected then it will log ClojureScript objects directly
+- if it detects a browser that is not pre-chromium IE/Edge, then it will use `console.log` `"%c"` CSS-based colorization
+- all other cases it logs plain text
+
+This behaviour can be changed by setting `lambdaisland.glogi.console.colorize`
+in `:closure-defines` in your compiler options.
+
+- `"auto"` the autodetect behavior described above (default)
+- `"raw"` always log ClojureScript objects directly
+- `"true"` format using CSS
+- `"false"` format  as plain text
+
 ### Use with Pedestal
 
 `lambdaisland.glogi`'s API overlaps with the API of `io.pedestal.log`, so if you
