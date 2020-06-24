@@ -20,13 +20,13 @@ If you find value in our work please consider [becoming a backer on Open Collect
 
 deps.edn
 
-```
+``` clojure
 lambdaisland/glogi {:mvn/version "1.0.63"}
 ```
 
 project.clj
 
-```
+``` clojure
 [lambdaisland/glogi "1.0.63"]
 ```
 
@@ -126,7 +126,7 @@ levels.
 |          | :shout   |     1200 | Critical error                                               |
 | :error   | :severe  |     1000 | Serious failure                                              |
 | :warn    | :warning |      900 | Potential problem, but program continues                     |
-|          | :info    |      800 | Informational message, e.g. to make background tasks visible |
+| :info    | :info    |      800 | Informational message, e.g. to make background tasks visible |
 |          | :config  |      700 | Configuration info                                           |
 | :debug   | :fine    |      500 | Step-by-step debug messages                                  |
 | :trace   | :finer   |      400 | More verbose, detailed tracing messages                      |
