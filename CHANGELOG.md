@@ -1,10 +1,9 @@
 # Unreleased
 
-## Added
-
-## Fixed
-
 ## Changed
+
+- We no longer pull in a specific Clojure/ClojureScript version, assuming that
+  client consumers will already have specific versions declared for their project.
 
 # 1.0.63 (2020-05-05 / bcafca0)
 
