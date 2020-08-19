@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>glogi</artifactId>
-  <version>1.0.63</version>
+  <version>1.0.70</version>
   <name>glogi</name>
-  <dependencies>
-    <dependency>
-      <groupId>org.clojure</groupId>
-      <artifactId>clojure</artifactId>
-      <version>1.10.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.clojure</groupId>
-      <artifactId>clojurescript</artifactId>
-      <version>1.10.520</version>
-    </dependency>
-  </dependencies>
+  <description>A thin wrapper around `goog.log` inspired by `pedestal.log`.</description>
+  <url>https://github.com/lambdaisland/glogi</url>
+  <inceptionYear>2019</inceptionYear>
+  <organization>
+    <name>Lambda Island</name>
+    <url>https://lambdaisland.com</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>MPL-2.0</name>
+      <url>https://www.mozilla.org/media/MPL/2.0/index.txt</url>
+    </license>
+  </licenses>
   <scm>
     <url>https://github.com/lambdaisland/glogi</url>
     <connection>scm:git:git://github.com/lambdaisland/glogi.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/glogi.git</developerConnection>
-    <tag>b69c9032d408fca42d215a9054ba832c42ddbc11</tag>
+    <tag>e50172269fa4693fef06f0589cf980dcc15a916d</tag>
   </scm>
+  <dependencies></dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
       <resource>
         <directory>src</directory>
-      </resource>
-      <resource>
-        <directory>resources</directory>
       </resource>
     </resources>
     <plugins>
@@ -41,10 +40,24 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Git-Revision>b69c9032d408fca42d215a9054ba832c42ddbc11</Git-Revision>
+              <git-revision>e50172269fa4693fef06f0589cf980dcc15a916d</git-revision>
             </manifestEntries>
           </archive>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
