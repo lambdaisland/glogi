@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>glogi</artifactId>
-  <version>1.0.70</version>
+  <version>1.0.74</version>
   <name>glogi</name>
   <description>A thin wrapper around `goog.log` inspired by `pedestal.log`.</description>
   <url>https://github.com/lambdaisland/glogi</url>
@@ -22,7 +22,7 @@
     <url>https://github.com/lambdaisland/glogi</url>
     <connection>scm:git:git://github.com/lambdaisland/glogi.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/glogi.git</developerConnection>
-    <tag>e50172269fa4693fef06f0589cf980dcc15a916d</tag>
+    <tag>5cd929188da6c9984f41388ba4b9dab5283c0a88</tag>
   </scm>
   <dependencies></dependencies>
   <build>
@@ -35,12 +35,17 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.2.0</version>
         <configuration>
           <archive>
             <manifestEntries>
-              <git-revision>e50172269fa4693fef06f0589cf980dcc15a916d</git-revision>
+              <git-revision>5cd929188da6c9984f41388ba4b9dab5283c0a88</git-revision>
             </manifestEntries>
           </archive>
         </configuration>
@@ -48,7 +53,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
+        <version>1.6</version>
         <executions>
           <execution>
             <id>sign-artifacts</id>
