@@ -2,9 +2,8 @@
 
 ## Added
 
-## Fixed
-
-## Changed
+- Export lambdaisland.glogi.set-levels so you can use it from the browser
+  console (pass in an array of two-element arrays of strings)
 
 # 1.0.70 (2020-08-19 / df34f1a)
 
