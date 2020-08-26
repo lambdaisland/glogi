@@ -1,4 +1,4 @@
-# Unreleased
+# 1.0.74 (2020-08-26 / acf8c48)
 
 ## Added
 

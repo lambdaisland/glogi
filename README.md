@@ -37,13 +37,13 @@ so that we may continue to enjoy a thriving Clojure ecosystem.
 deps.edn
 
 ``` clojure
-lambdaisland/glogi {:mvn/version "1.0.70"}
+lambdaisland/glogi {:mvn/version "1.0.74"}
 ```
 
 project.clj
 
 ``` clojure
-[lambdaisland/glogi "1.0.70"]
+[lambdaisland/glogi "1.0.74"]
 ```
 
 ## Quickstart
