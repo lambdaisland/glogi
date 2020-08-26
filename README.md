@@ -218,6 +218,17 @@ in `:closure-defines` in your compiler options.
 - `"true"` format using CSS
 - `"false"` format  as plain text
 
+### Logging in production
+
+Production builds typically have `goog.DEBUG` set to `false`. This strips out
+some development checks, it also strips out logging. If you still want to see
+logs on production then add this to your ClojureScript compiler options:
+
+``` clojure
+:closure-defines {goog.DEBUG false
+                  goog.debug.LOGGING_ENABLED true}
+```
+
 ### Use with Pedestal
 
 `lambdaisland.glogi`'s API overlaps with the API of `io.pedestal.log`, so if you

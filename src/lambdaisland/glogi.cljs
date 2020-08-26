@@ -86,10 +86,24 @@
   (assert (contains? levels lvl))
   (some-> (logger name) (.setLevel (level lvl))))
 
-(defn set-levels
-  "Convenience function for setting several levels at one. Takes a map of logger name => level keyword."
+(defn ^:export set-levels
+  "Convenience function for setting several levels at one.
+
+  Takes a map of logger name => level keyword. The logger name can be a string,
+  keyword, or symbol. The keyword :glogi/root refers to the root logger and is
+  equivalent to using an empty string.
+
+  This function is exported so it is still available in optimized builds to set
+  levels from the javascript console. In this case use nested arrays and
+  strings. Use an empty string for the root logger.
+
+  ``` javascript
+  lambdaisland.glogi.set_levels([[\"\" \"debug\"] [\"lambdaisland\" \"trace\"]])
+  ```
+  "
   [lvls]
-  (doseq [[logger level] lvls]
+  (doseq [[logger level] lvls
+          :let [level (if (string? level) (keyword level) level)]]
     (set-level logger level)))
 
 (defn enable-console-logging!
