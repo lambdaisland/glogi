@@ -1,13 +1,13 @@
 (ns lambdaisland.glogi
   (:require [goog.log :as glog]
-            [goog.debug.Logger :as Logger]
-            [goog.debug.Logger.Level :as Level]
+            [goog.log.Logger :as Logger]
+            [goog.log.Level :as Level]
             [goog.debug.Console :as Console]
             [goog.array :as array]
             [clojure.string :as str]
             [goog.object :as gobj])
-  (:import [goog.debug Logger Console FancyWindow DivConsole LogRecord]
-           [goog.debug.Logger Level])
+  (:import [goog.debug Console FancyWindow DivConsole LogRecord]
+           [goog.log Logger Level])
   (:require-macros [lambdaisland.glogi]))
 
 (defn name-str [x]
@@ -31,7 +31,7 @@
   "Get a logger by name, and optionally set its level. Name can be a string
   keyword, or symbol. The special keyword :glogi/root returns the root logger."
   (^Logger [n]
-   (glog/getLogger (name-str n)))
+   (glog/getLogger (name-str n) Level/INFO))
   (^Logger [n level]
    (glog/getLogger (name-str n) level)))
 
@@ -64,7 +64,7 @@
   (.-value (level lvl)))
 
 (defn make-log-record ^LogRecord [level message name exception]
-  (let [record (LogRecord. level message name)]
+  (let [record (LogRecord. level message name 0)]
     (when exception
       (.setException record exception))
     record))
@@ -77,14 +77,14 @@
   ([name lvl message exception]
    (when glog/ENABLED
      (when-let [l (logger name)]
-       (.logRecord l
-                   (make-log-record (level lvl) message name exception))))))
+       (glog/publishLogRecord l
+                              (make-log-record (level lvl) message name exception))))))
 
 (defn set-level
   "Set the level (a keyword) of the given logger, identified by name."
   [name lvl]
   (assert (contains? levels lvl))
-  (some-> (logger name) (.setLevel (level lvl))))
+  (some-> (logger name) (glog/setLevel (level lvl))))
 
 (defn ^:export set-levels
   "Convenience function for setting several levels at one.
@@ -143,16 +143,16 @@
    (add-handler "" handler-fn))
   ([name handler-fn]
    (some-> (logger name)
-           (.addHandler
-             (doto
-               (fn [^LogRecord record]
-                 (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
-                              :time (.-time_ record)
-                              :level (keyword (str/lower-case (.-name (.-level_ record))))
-                              :message (.-msg_ record)
-                              :logger-name (.-loggerName_ record)
-                              :exception (.-exception_ record)}))
-               (gobj/set "handler-fn" handler-fn))))))
+           (glog/addHandler
+            (doto
+                (fn [^LogRecord record]
+                  (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
+                               :time (.-time_ record)
+                               :level (keyword (str/lower-case (.-name (.-level_ record))))
+                               :message (.-msg_ record)
+                               :logger-name (.-loggerName_ record)
+                               :exception (.-exception_ record)}))
+              (gobj/set "handler-fn" handler-fn))))))
 
 (defn remove-handler
   ([handler-fn]
