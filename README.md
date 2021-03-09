@@ -4,9 +4,9 @@
 [![cljdoc badge](https://cljdoc.org/badge/lambdaisland/glogi)](https://cljdoc.org/d/lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/lambdaisland/glogi.svg)](https://clojars.org/lambdaisland/glogi)
 <!-- /badges -->
 
-A thin wrapper around `goog.log` inspired by `pedestal.log`.
+A wrapper around `goog.log` inspired by `pedestal.log`.
 
-For more info see the accompanying blog post: [ClojureScript logging with goog.log](https://lambdaisland.com/blog/2019-06-10-goog-log), and [Logging in Practice with Glögi and Pedestal](https://lambdaisland.com/blog/2020-09-28-logging-in-practice-glogi-pedestal)
+For more info see the accompanying blog post: [ClojureScript logging with goog.log](https://lambdaisland.com/blog/2019-06-10-goog-log), and [Logging in Practice with Glögi and Pedestal](https://lambdaisland.com/blog/2020-09-28-logging-in-practice-glogi-pedestal).
 
 ## Installation
 
@@ -207,25 +207,28 @@ logs on production then add this to your ClojureScript compiler options:
 
 ### Use with Pedestal
 
-`lambdaisland.glogi`'s API overlaps with the API of `io.pedestal.log`, so if you
-are writing cross-platform code you can do this:
+The `lambdaisland.glogc` namespace provides a cross-platform (cljc) API, which
+uses Glogi on ClojureScript, and `io.pedestal.log` on Clojure. This way it's
+easy to do logging from `cljc` code, or just to have a consistent logging setup
+without having to wonder what kind of file you are in.
+
+Note that the pedestal.log dependency is "BYO" (bring your own), you need to add
+it explicitly to your dependencies.
 
 ``` clojure
 (ns my.ns
-  (:require #?(:clj [io.pedestal.log :as log]
-               :cljs [lambdaisland.glogi :as log])))
+  (:require [lambdaisland.glogc :as log))
 
 (log/debug :foo :bar)
 ```
 
-Note that goog.log has more distinct log levels than Pedestal, for this use case you need to limit yourself to
+`goog.log` has more distinct log levels than Pedestal. We provide macros for all
+of them, on Clojure they simply map to the nearest equivalent.
 
-- trace
-- debug
-- info
-- warn
-- error
-- spy
+- finest -> trace
+- finer -> trace
+- fine -> debug
+- config -> info
 
 ### Supported by Nextjournal
 

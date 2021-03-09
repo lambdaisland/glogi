@@ -2,9 +2,8 @@
 
 ## Added
 
-## Fixed
-
-## Changed
+- With `lambdaisland.glogc` there is now an official way to use the
+  Glogi/Pedestal-log combo in a consistent cross-platform way
 
 # 1.0.80 (2021-03-09 / 9c5ea2b)
 

@@ -3,7 +3,10 @@
 
  :aliases
  {:dev
-  {:extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.0"}}}
+  {:extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.12"}}}
 
   :test
-  {:extra-deps {lambdaisland/kaocha {:mvn/version "0.0-418"}}}}}
+  {:extra-deps {lambdaisland/kaocha {:mvn/version "1.0.829"}}}
+
+  :pedestal
+  {:extra-deps {io.pedestal/pedestal.log {:mvn/version "0.5.8"}}}}}
