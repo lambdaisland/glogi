@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>glogi</artifactId>
-  <version>1.0.74</version>
+  <version>1.0.80</version>
   <name>glogi</name>
   <description>A thin wrapper around `goog.log` inspired by `pedestal.log`.</description>
   <url>https://github.com/lambdaisland/glogi</url>
@@ -22,7 +22,7 @@
     <url>https://github.com/lambdaisland/glogi</url>
     <connection>scm:git:git://github.com/lambdaisland/glogi.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/glogi.git</developerConnection>
-    <tag>5cd929188da6c9984f41388ba4b9dab5283c0a88</tag>
+    <tag>b7135d3ea02d639e63c7cd396cd443bf3080d3c7</tag>
   </scm>
   <dependencies></dependencies>
   <build>
@@ -45,7 +45,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <git-revision>5cd929188da6c9984f41388ba4b9dab5283c0a88</git-revision>
+              <git-revision>b7135d3ea02d639e63c7cd396cd443bf3080d3c7</git-revision>
             </manifestEntries>
           </archive>
         </configuration>
