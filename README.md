@@ -13,13 +13,13 @@ For more info see the accompanying blog post: [ClojureScript logging with goog.l
 deps.edn
 
 ``` clojure
-lambdaisland/glogi {:mvn/version "1.0.74"}
+lambdaisland/glogi {:mvn/version "1.0.80"}
 ```
 
 project.clj
 
 ``` clojure
-[lambdaisland/glogi "1.0.74"]
+[lambdaisland/glogi "1.0.80"]
 ```
 
 ## Quickstart
