@@ -1,8 +1,9 @@
 # Unreleased
 
-## Added
-
 ## Fixed
+
+- Maintain compatibility with newer versions of the Google Closure library,
+  which introduced breaking changes in v20210302
 
 ## Changed
 
