@@ -1,36 +1,12 @@
 # Glögi
 
 <!-- badges -->
-[![CircleCI](https://circleci.com/gh/lambdaisland/glogi.svg?style=svg)](https://circleci.com/gh/lambdaisland/glogi) [![cljdoc badge](https://cljdoc.org/badge/lambdaisland/glogi)](https://cljdoc.org/d/lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/lambdaisland/glogi.svg)](https://clojars.org/lambdaisland/glogi)
+[![cljdoc badge](https://cljdoc.org/badge/lambdaisland/glogi)](https://cljdoc.org/d/lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/lambdaisland/glogi.svg)](https://clojars.org/lambdaisland/glogi)
 <!-- /badges -->
 
 A thin wrapper around `goog.log` inspired by `pedestal.log`.
 
-For more info see the accompanying blog post: [ClojureScript logging with goog.log](https://lambdaisland.com/blog/2019-06-10-goog-log)
-
-Many thanks to [Nextjournal](https://nextjournal.com/) for coming up with an interesting problem, and giving me the opportunity to explore and solve it.
-
-<!-- opencollective -->
-
-&nbsp;
-
-<img align="left" src="https://github.com/lambdaisland/open-source/raw/master/artwork/lighthouse_readme.png">
-
-&nbsp;
-
-## Support Lambda Island Open Source
-
-glogi is part of a growing collection of quality Clojure libraries and
-tools released on the Lambda Island label. If you are using this project
-commercially then you are expected to pay it forward by
-[becoming a backer on Open Collective](http://opencollective.com/lambda-island#section-contribute),
-so that we may continue to enjoy a thriving Clojure ecosystem.
-
-&nbsp;
-
-&nbsp;
-
-<!-- /opencollective -->
+For more info see the accompanying blog post: [ClojureScript logging with goog.log](https://lambdaisland.com/blog/2019-06-10-goog-log), and [Logging in Practice with Glögi and Pedestal](https://lambdaisland.com/blog/2020-09-28-logging-in-practice-glogi-pedestal)
 
 ## Installation
 
@@ -251,6 +227,25 @@ Note that goog.log has more distinct log levels than Pedestal, for this use case
 - error
 - spy
 
+### Supported by Nextjournal
+
+Many thanks to [Nextjournal](https://nextjournal.com/) for coming up with an interesting problem, and giving me the opportunity to explore and solve it.
+
+<!-- opencollective -->
+
+<img align="left" src="https://github.com/lambdaisland/open-source/raw/master/artwork/lighthouse_readme.png">
+
+&nbsp;
+
+## Support Lambda Island Open Source
+
+glogi is part of a growing collection of quality Clojure libraries created and maintained
+by the fine folks at [Gaiwan](https://gaiwan.co). Find the full list at [lambdaisland/open-source](https://github.com/lambdaisland/open-source). 
+You can pay it forward by [becoming a backer on our Open Collective](http://opencollective.com/lambda-island#section-contribute), 
+so that we may continue to enjoy a thriving Clojure ecosystem.
+
+<!-- /opencollective -->
+
 <!-- contributing -->
 ## Contributing
 
@@ -286,7 +281,7 @@ changes are justified.
 <!-- license -->
 ## License
 
-Copyright &copy; 2019-2020 Arne Brasseur and Contributors
+Copyright &copy; 2019-2021 Arne Brasseur and Contributors
 
 Licensed under the term of the Mozilla Public License 2.0, see LICENSE.
 <!-- /license -->
