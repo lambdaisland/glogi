@@ -236,16 +236,23 @@ Many thanks to [Nextjournal](https://nextjournal.com/) for coming up with an int
 
 <!-- opencollective -->
 
+## Lambda Island Open Source
+
 <img align="left" src="https://github.com/lambdaisland/open-source/raw/master/artwork/lighthouse_readme.png">
 
 &nbsp;
 
-## Support Lambda Island Open Source
-
 glogi is part of a growing collection of quality Clojure libraries created and maintained
-by the fine folks at [Gaiwan](https://gaiwan.co). Find the full list at [lambdaisland/open-source](https://github.com/lambdaisland/open-source). 
-You can pay it forward by [becoming a backer on our Open Collective](http://opencollective.com/lambda-island#section-contribute), 
+by the fine folks at [Gaiwan](https://gaiwan.co).
+
+Pay it forward by [becoming a backer on our Open Collective](http://opencollective.com/lambda-island#section-contribute),
 so that we may continue to enjoy a thriving Clojure ecosystem.
+
+You can find an overview of our projects at [lambdaisland/open-source](https://github.com/lambdaisland/open-source).
+
+&nbsp;
+
+&nbsp;
 
 <!-- /opencollective -->
 
