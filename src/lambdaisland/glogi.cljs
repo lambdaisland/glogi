@@ -10,6 +10,34 @@
            [goog.debug.Logger Level])
   (:require-macros [lambdaisland.glogi]))
 
+;; Wrappers around goog.log methods which changed in Closure v20210302, so we
+;; can retain backward compatibility. The static method call is the newer
+;; version.
+
+(defn- goog-setLevel [logger level]
+  (if (exists? glog/setLevel)
+    (glog/setLevel logger level)
+    (.setLevel logger level)))
+
+(defn- goog-logRecord [logger record]
+  (if (exists? glog/publishLogRecord)
+    (glog/publishLogRecord logger record)
+    (.logRecord logger record)))
+
+(defn- goog-addHandler [logger handler]
+  (if (exists? glog/addHandler)
+    (glog/addHandler logger handler)
+    (.addHandler logger handler)))
+
+(defn- goog-removeHandler [logger handler]
+  (if (exists? glog/removeHandler)
+    (glog/removeHandler logger handler)
+    (.removeHandler logger handler)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def ^private logger-handlers-prop "__glogi_handlers__")
+
 (defn name-str [x]
   (cond
     (= :glogi/root x)
@@ -77,14 +105,13 @@
   ([name lvl message exception]
    (when glog/ENABLED
      (when-let [l (logger name)]
-       (.logRecord l
-                   (make-log-record (level lvl) message name exception))))))
+       (goog-logRecord l (make-log-record (level lvl) message name exception))))))
 
 (defn set-level
   "Set the level (a keyword) of the given logger, identified by name."
   [name lvl]
   (assert (contains? levels lvl))
-  (some-> (logger name) (.setLevel (level lvl))))
+  (some-> (logger name) (goog-setLevel (level lvl))))
 
 (defn ^:export set-levels
   "Convenience function for setting several levels at one.
@@ -136,35 +163,48 @@
   (doto (DivConsole. element)
     (.setCapturing  true)))
 
+(defn- logger-glogi-handlers [logger]
+  (gobj/get logger logger-handlers-prop))
+
+(defn- swap-handlers! [logger f & args]
+  (gobj/set
+   logger logger-handlers-prop
+   (apply f (logger-glogi-handlers logger) args)))
+
 (defn add-handler
   "Add a log handler to the given logger, or to the root logger if no logger is
-  specified. The handler is a function which receives a map as its argument."
+  specified. The handler is a function which receives a map as its argument.
+
+  A given handler-fn is only added to a given logger once, even when called
+  repeatedly."
   ([handler-fn]
    (add-handler "" handler-fn))
   ([name handler-fn]
-   (some-> (logger name)
-           (.addHandler
-             (doto
-               (fn [^LogRecord record]
-                 (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
-                              :time (.-time_ record)
-                              :level (keyword (str/lower-case (.-name (.-level_ record))))
-                              :message (.-msg_ record)
-                              :logger-name (.-loggerName_ record)
-                              :exception (.-exception_ record)}))
-               (gobj/set "handler-fn" handler-fn))))))
+   (let [logger (logger name)
+         log-record-handler
+         (fn [^LogRecord record]
+           (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
+                        :time (.-time_ record)
+                        :level (keyword (str/lower-case (.-name (.-level_ record))))
+                        :message (.-msg_ record)
+                        :logger-name (.-loggerName_ record)
+                        :exception (.-exception_ record)}))]
+     (when logger
+       (when-let [handler (get (logger-glogi-handlers logger) handler-fn)]
+         (goog-removeHandler logger handler))
+       (swap-handlers! logger assoc handler-fn log-record-handler)
+       (some-> logger (goog-addHandler log-record-handler))))))
 
 (defn remove-handler
   ([handler-fn]
    (remove-handler "" handler-fn))
   ([name handler-fn]
-   (some-> (logger name) (.removeHandler handler-fn))))
+   (let [logger (logger name)]
+     (when logger
+       (when-let [handler (get (logger-glogi-handlers logger) handler-fn)]
+         (goog-removeHandler logger handler))
+       (swap-handlers! logger dissoc handler-fn)))))
 
-(defn add-handler-once
-  ([handler-fn]
-   (add-handler-once "" handler-fn))
-  ([name handler-fn]
-   (when-let [l (logger name)]
-     (when-not (some (comp #{handler-fn} #(gobj/get % "handler-fn"))
-                     (.-handlers_ l))
-       (add-handler name handler-fn)))))
+;; Retained for backward compatibility, but we don't add the same handler twice
+;; to the same logger.
+(def add-handler-once add-handler)
