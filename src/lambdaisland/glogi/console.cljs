@@ -55,8 +55,8 @@
        (exists? js/window.navigator)
        (exists? js/window.navigator.userAgent)
        ;; IE and pre-chromium EDGE don't support %c
-       (or (.includes js/window.navigator.userAgent "MSIE")
-           (.includes js/window.navigator.userAgent "Trident"))))
+       (or (> (.indexOf js/window.navigator.userAgent "MSIE") -1)
+           (> (.indexOf js/window.navigator.userAgent "Trident") -1))))
 
 (defn select-handler []
   (case colorize
