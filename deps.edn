@@ -16,7 +16,8 @@
   :test
   {:extra-paths ["test"]
    :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.829"}
-                lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}}}
+                lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}
+                lambdaisland/kaocha-junit-xml {:mvn/version "RELEASE"}}}
 
   :pedestal
   {:extra-deps {io.pedestal/pedestal.log {:mvn/version "0.5.8"}}}}}
