@@ -1,14 +1,16 @@
 (ns lambdaisland.glogi
   (:require [goog.log :as glog]
-            [goog.debug.Logger :as Logger]
-            [goog.debug.Logger.Level :as Level]
             [goog.debug.Console :as Console]
             [goog.array :as array]
             [clojure.string :as str]
             [goog.object :as gobj])
-  (:import [goog.debug Logger Console FancyWindow DivConsole LogRecord]
-           [goog.debug.Logger Level])
+  (:import [goog.debug Console FancyWindow DivConsole])
   (:require-macros [lambdaisland.glogi]))
+
+(def Level
+  (if (exists? glog/Level)
+    glog/Level
+    goog.debug.logger.Level))
 
 ;; Wrappers around goog.log methods which changed in Closure v20210302, so we
 ;; can retain backward compatibility. The static method call is the newer
@@ -16,12 +18,12 @@
 
 (defn- goog-setLevel [logger level]
   (if (exists? glog/setLevel)
-    (glog/setLevel logger level)
+    (^:cljs.analyzer/no-resolve glog/setLevel logger level)
     (.setLevel logger level)))
 
 (defn- goog-logRecord [logger record]
   (if (exists? glog/publishLogRecord)
-    (glog/publishLogRecord logger record)
+    (^:cljs.analyzer/no-resolve glog/publishLogRecord logger record)
     (.logRecord logger record)))
 
 (defn- goog-addHandler [logger handler]
@@ -58,32 +60,32 @@
 (defn logger
   "Get a logger by name, and optionally set its level. Name can be a string
   keyword, or symbol. The special keyword :glogi/root returns the root logger."
-  (^Logger [n]
+  ([n]
    (glog/getLogger (name-str n)))
-  (^Logger [n level]
+  ([n level]
    (glog/getLogger (name-str n) level)))
 
-(def ^Logger root-logger (logger ""))
+(def root-logger (logger ""))
 
 (def levels
-  {:off     Level/OFF
-   :shout   Level/SHOUT
-   :severe  Level/SEVERE
-   :warning Level/WARNING
-   :info    Level/INFO
-   :config  Level/CONFIG
-   :fine    Level/FINE
-   :finer   Level/FINER
-   :finest  Level/FINEST
-   :all     Level/ALL
+  {:off     (.-OFF Level)
+   :shout   (.-SHOUT Level)
+   :severe  (.-SEVERE Level)
+   :warning (.-WARNING Level)
+   :info    (.-INFO Level)
+   :config  (.-CONFIG Level)
+   :fine    (.-FINE Level)
+   :finer   (.-FINER Level)
+   :finest  (.-FINEST Level)
+   :all     (.-ALL Level)
 
    ;; pedestal style
-   :trace Level/FINER
-   :debug Level/FINE
-   :warn  Level/WARNING
-   :error Level/SEVERE})
+   :trace (.-FINER Level)
+   :debug (.-FINE Level)
+   :warn  (.-WARNING Level)
+   :error (.-SEVERE Level)})
 
-(defn level ^Level [lvl]
+(defn level [lvl]
   (get levels lvl))
 
 (defn level-value
@@ -91,8 +93,11 @@
   [lvl]
   (.-value (level lvl)))
 
-(defn make-log-record ^LogRecord [level message name exception]
-  (let [record (LogRecord. level message name)]
+(defn make-log-record [level message name exception]
+  (let [LogRecord (if (exists? goog.debug.LogRecord)
+                    goog.debug.LogRecord
+                    goog.log.LogRecord)
+        record (new LogRecord level message name)]
     (when exception
       (.setException record exception))
     record))
@@ -182,7 +187,7 @@
   ([name handler-fn]
    (let [logger (logger name)
          log-record-handler
-         (fn [^LogRecord record]
+         (fn [record]
            (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
                         :time (.-time_ record)
                         :level (keyword (str/lower-case (.-name (.-level_ record))))
