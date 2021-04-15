@@ -1,55 +1,34 @@
 version: 2.1
 
 orbs:
-  kaocha: lambdaisland/kaocha@dev:first
-  clojure: lambdaisland/clojure@dev:first
+  clojure: lambdaisland/clojure@dev:0.0.5-rc1
 
 commands:
   checkout_and_run:
-    parameters:
-      clojure_version:
-        type: string
     steps:
       - checkout
       - clojure/with_cache:
-          cache_version: << parameters.clojure_version >>
+          cache_version: "1"
           steps:
-            - kaocha/execute:
-                args: "--reporter documentation --plugin cloverage --codecov"
-                clojure_version: << parameters.clojure_version >>
-      - kaocha/upload_codecov
+            - run: mkdir -p test-results/kaocha
+            - run: |
+                  bin/kaocha \
+                  --reporter documentation \
+                  --plugin junit-xml \
+                  --plugin kaocha.plugin.alpha/info \
+                  --print-env \
+                  --junit-xml-file test-results/kaocha/$(date +"%s").xml 
+            - store_artifacts:
+                path: test-results
+            - store_test_results:
+                path: test-results
 
 jobs:
-  java-11-clojure-1_10:
-    executor: clojure/openjdk11
-    steps: [{checkout_and_run: {clojure_version: "1.10.0-RC5"}}]
-
-  java-11-clojure-1_9:
-    executor: clojure/openjdk11
-    steps: [{checkout_and_run: {clojure_version: "1.9.0"}}]
-
-  java-9-clojure-1_10:
-    executor: clojure/openjdk9
-    steps: [{checkout_and_run: {clojure_version: "1.10.0-RC5"}}]
-
-  java-9-clojure-1_9:
-    executor: clojure/openjdk9
-    steps: [{checkout_and_run: {clojure_version: "1.9.0"}}]
-
-  java-8-clojure-1_10:
-    executor: clojure/openjdk8
-    steps: [{checkout_and_run: {clojure_version: "1.10.0-RC5"}}]
-
-  java-8-clojure-1_9:
-    executor: clojure/openjdk8
-    steps: [{checkout_and_run: {clojure_version: "1.9.0"}}]
+  java-16:
+    executor: clojure/openjdk16
+    steps: [{checkout_and_run: {}}]
 
 workflows:
   kaocha_test:
     jobs:
-      - java-11-clojure-1_10
-      - java-11-clojure-1_9
-      - java-9-clojure-1_10
-      - java-9-clojure-1_9
-      - java-8-clojure-1_10
-      - java-8-clojure-1_9
+      - java-16
