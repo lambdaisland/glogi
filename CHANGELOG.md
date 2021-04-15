@@ -1,3 +1,11 @@
+# Unreleased
+
+## Added
+
+## Fixed
+
+## Changed
+
 # 1.0.100 (2021-04-15 / 8a8ccf0)
 
 ## Fixed
