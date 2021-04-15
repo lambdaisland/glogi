@@ -24,8 +24,8 @@ commands:
                 path: test-results
 
 jobs:
-  java-11:
-    executor: clojure/openjdk11
+  java-16:
+    executor: clojure/openjdk16
     steps: [{checkout_and_run: {}}]
 
 workflows:
