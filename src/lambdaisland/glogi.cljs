@@ -61,7 +61,7 @@
   "Get a logger by name, and optionally set its level. Name can be a string
   keyword, or symbol. The special keyword :glogi/root returns the root logger."
   ([n]
-   (glog/getLogger (name-str n)))
+   (glog/getLogger (name-str n) nil))
   ([n level]
    (glog/getLogger (name-str n) level)))
 

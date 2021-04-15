@@ -1,13 +1,5 @@
 # Unreleased
 
-## Added
-
-## Fixed
-
-## Changed
-
-# 1.0.96 (2021-04-15 / e4e738f)
-
 ## Fixed
 
 - More fixes to deal with upstream changes in Google Closure Library
