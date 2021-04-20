@@ -1,10 +1,8 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Prevent single-arg `logger` from erasing the log level
 
 # 1.0.100 (2021-04-15 / 8a8ccf0)
 
