@@ -1,13 +1,5 @@
 # Unreleased
 
-## Added
-
-## Fixed
-
-## Changed
-
-# 1.0.109 (2021-04-21 / 8134578)
-
 ## Changed
 
 - Artifact name changed to `com.lambdaisland/glogi` in line with Clojars policy
