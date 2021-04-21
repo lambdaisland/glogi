@@ -1,7 +1,7 @@
 # Glögi
 
 <!-- badges -->
-[![cljdoc badge](https://cljdoc.org/badge/lambdaisland/glogi)](https://cljdoc.org/d/lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/lambdaisland/glogi.svg)](https://clojars.org/lambdaisland/glogi)
+[![CircleCI](https://circleci.com/gh/com.lambdaisland/glogi.svg?style=svg)](https://circleci.com/gh/com.lambdaisland/glogi) [![cljdoc badge](https://cljdoc.org/badge/com.lambdaisland/glogi)](https://cljdoc.org/d/com.lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/com.lambdaisland/glogi.svg)](https://clojars.org/com.lambdaisland/glogi)
 <!-- /badges -->
 
 A wrapper around `goog.log` inspired by `pedestal.log`.
@@ -235,7 +235,6 @@ of them, on Clojure they simply map to the nearest equivalent.
 Many thanks to [Nextjournal](https://nextjournal.com/) for coming up with an interesting problem, and giving me the opportunity to explore and solve it.
 
 <!-- opencollective -->
-
 ## Lambda Island Open Source
 
 <img align="left" src="https://github.com/lambdaisland/open-source/raw/master/artwork/lighthouse_readme.png">
@@ -253,7 +252,6 @@ You can find an overview of our projects at [lambdaisland/open-source](https://g
 &nbsp;
 
 &nbsp;
-
 <!-- /opencollective -->
 
 <!-- contributing -->
