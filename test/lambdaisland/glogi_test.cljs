@@ -12,14 +12,16 @@
     (log/warn :get :these :log :messages)
     (log/fine :not :you)
     (log/info :to :show :up :here)
-    (is (= [{:sequenceNumber 5
+    (is (= [{:sequenceNumber 0
              :level :warning
              :message {:get :these :log :messages :line 12}
              :logger-name "lambdaisland.glogi-test"
              :exception nil}
-            {:sequenceNumber 7
+            {:sequenceNumber 0
              :level :info
              :message {:to :show :up :here :line 14}
              :logger-name "lambdaisland.glogi-test" :exception nil}]
            (map #(dissoc % :time) @captured)))
-    (log/remove-handler handler)))
+    (log/remove-handler handler)
+
+    (is (= (log/level-value :warn) 900))))

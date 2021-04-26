@@ -67,23 +67,30 @@
 
 (def root-logger (logger ""))
 
+(defn- predefined-level [name]
+  (when (exists? glog/Level)
+    (glog/Level.getPredefinedLevel name)))
+
 (def levels
-  {:off     (.-OFF Level)
-   :shout   (.-SHOUT Level)
-   :severe  (.-SEVERE Level)
-   :warning (.-WARNING Level)
-   :info    (.-INFO Level)
-   :config  (.-CONFIG Level)
-   :fine    (.-FINE Level)
-   :finer   (.-FINER Level)
-   :finest  (.-FINEST Level)
-   :all     (.-ALL Level)
+  ;; Hacky way to make this work across versions. (.-OFF Level) does not work in
+  ;; the new version after advanced compilation, but they have added a lookup
+  ;; function.
+  {:off     (or (.-OFF Level) (predefined-level "OFF"))
+   :shout   (or (.-SHOUT Level) (predefined-level "SHOUT"))
+   :severe  (or (.-SEVERE Level) (predefined-level "SEVERE"))
+   :warning (or (.-WARNING Level) (predefined-level "WARNING"))
+   :info    (or (.-INFO Level) (predefined-level "INFO"))
+   :config  (or (.-CONFIG Level) (predefined-level "CONFIG"))
+   :fine    (or (.-FINE Level) (predefined-level "FINE"))
+   :finer   (or (.-FINER Level) (predefined-level "FINER"))
+   :finest  (or (.-FINEST Level) (predefined-level "FINEST"))
+   :all     (or (.-ALL Level) (predefined-level "ALL"))
 
    ;; pedestal style
-   :trace (.-FINER Level)
-   :debug (.-FINE Level)
-   :warn  (.-WARNING Level)
-   :error (.-SEVERE Level)})
+   :trace (or (.-FINER Level) (predefined-level "FINER"))
+   :debug (or (.-FINE Level) (predefined-level "FINE"))
+   :warn  (or (.-WARNING Level) (predefined-level "WARNING"))
+   :error (or (.-SEVERE Level) (predefined-level "SEVERE"))})
 
 (defn level [lvl]
   (get levels lvl))
@@ -187,7 +194,7 @@
   ([name handler-fn]
    (let [logger (logger name)
          log-record-handler
-         (fn [record]
+         (fn [^goog.log/LogRecord record]
            (handler-fn {:sequenceNumber (.-sequenceNumber_ record)
                         :time (.-time_ record)
                         :level (keyword (str/lower-case (.-name (.-level_ record))))
