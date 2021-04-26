@@ -1,10 +1,9 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Fixed an issue with advanced compilation when calling `level-value`, which is
+  used by the console handler
 
 # 1.0.112 (2021-04-21 / a104211)
 
