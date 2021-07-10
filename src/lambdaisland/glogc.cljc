@@ -5,7 +5,7 @@
   See https://lambdaisland.com/blog/2020-09-28-logging-in-practice-glogi-pedestal
   for some usage tips.
   "
-  #?(:cljs (:require-macros [co.gaiwan.log]))
+  #?(:cljs (:require-macros [lambdaisland.glogc]))
   (:require [lambdaisland.glogi :as glogi]
             #?(:clj [io.pedestal.log :as pedestal])))
 
