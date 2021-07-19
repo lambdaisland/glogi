@@ -1,7 +1,7 @@
 # Glögi
 
 <!-- badges -->
-[![CircleCI](https://circleci.com/gh/lambdaisland/glogi.svg?style=svg)](https://circleci.com/gh/lambdaisland/glogi) [![cljdoc badge](https://cljdoc.org/badge/lambdaisland/glogi)](https://cljdoc.org/d/lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/com.lambdaisland/glogi.svg)](https://clojars.org/com.lambdaisland/glogi)
+[![CircleCI](https://circleci.com/gh/lambdaisland/glogi.svg?style=svg)](https://circleci.com/gh/lambdaisland/glogi) [![cljdoc badge](https://cljdoc.org/badge/com.lambdaisland/glogi)](https://cljdoc.org/d/com.lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/com.lambdaisland/glogi.svg)](https://clojars.org/com.lambdaisland/glogi)
 <!-- /badges -->
 
 A wrapper around `goog.log` inspired by `pedestal.log`.
