@@ -6,7 +6,8 @@
  {:license                  :mpl
   :inception-year           2019
   :description              "A thin wrapper around `goog.log` inspired by `pedestal.log`."
-  :aliases-as-optional-deps [:pedestal]})
+  :aliases-as-optional-deps [:pedestal]
+  :group-id                 "com.lambdaisland"})
 
 
 ;; Local Variables:
