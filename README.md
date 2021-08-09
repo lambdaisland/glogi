@@ -1,7 +1,7 @@
 # Glögi
 
 <!-- badges -->
-[![CircleCI](https://circleci.com/gh/lambdaisland/glogi.svg?style=svg)](https://circleci.com/gh/lambdaisland/glogi) [![cljdoc badge](https://cljdoc.org/badge/com.lambdaisland/glogi)](https://cljdoc.org/d/com.lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/com.lambdaisland/glogi.svg)](https://clojars.org/com.lambdaisland/glogi)
+[![CircleCI](https://circleci.com/gh/com.lambdaisland/glogi.svg?style=svg)](https://circleci.com/gh/com.lambdaisland/glogi) [![cljdoc badge](https://cljdoc.org/badge/com.lambdaisland/glogi)](https://cljdoc.org/d/com.lambdaisland/glogi) [![Clojars Project](https://img.shields.io/clojars/v/com.lambdaisland/glogi.svg)](https://clojars.org/com.lambdaisland/glogi)
 <!-- /badges -->
 
 A wrapper around `goog.log` inspired by `pedestal.log`.
@@ -13,13 +13,13 @@ For more info see the accompanying blog post: [ClojureScript logging with goog.l
 deps.edn
 
 ``` clojure
-lambdaisland/glogi {:mvn/version "1.0.106"}
+com.lambdaisland/glogi {:mvn/version "1.0.106"}
 ```
 
 project.clj
 
 ``` clojure
-[lambdaisland/glogi "1.0.106"]
+[com.lambdaisland/glogi "1.0.106"]
 ```
 
 ## Quickstart
