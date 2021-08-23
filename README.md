@@ -217,7 +217,7 @@ it explicitly to your dependencies.
 
 ``` clojure
 (ns my.ns
-  (:require [lambdaisland.glogc :as log))
+  (:require [lambdaisland.glogc :as log]))
 
 (log/debug :foo :bar)
 ```
