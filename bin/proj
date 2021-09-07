@@ -1,4 +1,4 @@
-#!bin/bb
+#!/usr/bin/env bb
 
 (ns proj (:require [lioss.main :as lioss]))
 
@@ -8,7 +8,6 @@
   :description              "A thin wrapper around `goog.log` inspired by `pedestal.log`."
   :aliases-as-optional-deps [:pedestal]
   :group-id                 "com.lambdaisland"})
-
 
 ;; Local Variables:
 ;; mode:clojure
