@@ -1,22 +1,10 @@
 # Unreleased
 
-## Added
-
-## Fixed
-
 ## Changed
+
+- Set a default level of `:info` for the root logger 
 
 # 1.0.128 (2021-07-19 / 576ceba)
-
-## Added
-
-## Fixed
-
-## Changed
-
-# 1.0.125 (2021-07-19 / 8a81dc0)
-
-## Added
 
 ## Fixed
 
