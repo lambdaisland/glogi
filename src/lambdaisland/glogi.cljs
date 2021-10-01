@@ -120,7 +120,8 @@
        (goog-logRecord l (make-log-record (level lvl) message name exception))))))
 
 (defn set-level
-  "Set the level (a keyword) of the given logger, identified by name."
+  "Set the level (a keyword) of the given logger, identified by name, or :root for
+  the root logger."
   [name lvl]
   (assert (contains? levels lvl))
   (some-> (logger name) (goog-setLevel (level lvl))))
@@ -134,7 +135,7 @@
 
   This function is exported so it is still available in optimized builds to set
   levels from the javascript console. In this case use nested arrays and
-  strings. Use an empty string for the root logger.
+  strings. Use `:root` for the root logger.
 
   ``` javascript
   lambdaisland.glogi.set_levels([[\"\" \"debug\"] [\"lambdaisland\" \"trace\"]])
@@ -220,3 +221,5 @@
 ;; Retained for backward compatibility, but we don't add the same handler twice
 ;; to the same logger.
 (def add-handler-once add-handler)
+
+(set-level :root :info)
