@@ -2,7 +2,6 @@
   (:require [lambdaisland.glogi :as glogi]
             [lambdaisland.glogi.print :as print]
             [goog.object :as gobj]
-            [goog.debug.LogBuffer :as LogBuffer]
             [goog.debug.Console :as Console]))
 
 ;; By default we do CSS colorization on non-IE browsers only. You can change
