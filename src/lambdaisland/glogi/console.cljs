@@ -75,7 +75,7 @@
 (defn install! []
   ;; Disable goog.debug.Console if it's been enabled (e.g. by Figwheel), we do
   ;; console logging now
-  (when-let [instance Console/instance]
+  (when-let [^js instance Console/instance]
     (.setCapturing instance false))
 
   (glogi/add-handler-once (select-handler)))
