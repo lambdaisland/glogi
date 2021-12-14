@@ -1,10 +1,8 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Fix Closure compatibility issue
 
 # 1.0.136 (2021-10-01 / 40a1dbc)
 
