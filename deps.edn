@@ -13,6 +13,13 @@
   :cljs844
   {org.clojure/clojurescript {:mvn/version "1.10.844"}}
 
+  ;; After more Closure logging API changes
+  :cljs896
+  {org.clojure/clojurescript  {:mvn/version "1.10.896"}}
+
+  :cljs-latest
+  {org.clojure/clojurescript  {:mvn/version "RELEASE"}}
+
   :test
   {:extra-paths ["test"]
    :extra-deps {lambdaisland/kaocha {:mvn/version "1.60.945"}

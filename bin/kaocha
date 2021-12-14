@@ -6,3 +6,5 @@ set -ex
 
 clojure -A:dev:test:cljs764 -M -m kaocha.runner "$@"
 clojure -A:dev:test:cljs844 -M -m kaocha.runner "$@"
+clojure -A:dev:test:cljs896 -M -m kaocha.runner "$@"
+clojure -A:dev:test:cljs-latest -M -m kaocha.runner "$@"
