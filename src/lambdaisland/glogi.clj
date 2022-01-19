@@ -53,7 +53,7 @@
         ~res)))
   ([form & forms]
    (let [form-res (mapv (fn [f] (let [res (gensym)] (vector f res))) (conj forms form))
-         form-res-dict (into [] (mapcat (fn [[k v]] [k v]) form-res))]
+         form-res-dict (into [] (mapcat (fn [[k v]] [`'~k v]) form-res))]
      `(let ~(into [] (mapcat (fn [[k v]] [v k]) form-res))
         ~(log-expr &form :debug [:spy form-res-dict])
-        ~(last form-res)))))
+        ~(last (last form-res))))))

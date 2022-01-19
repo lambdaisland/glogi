@@ -24,8 +24,9 @@
              :logger-name "lambdaisland.glogi-test" :exception nil}]
            (map #(dissoc % :time) @captured)))
     (log/set-levels '{lambdaisland.glogi-test :debug}) ;Debug covers spy
-    (log/spy :spy)
+    (log/spy example-val)
     (log/spy :spy1 example-val)
     (log/remove-handler handler)
 
     (is (= (log/level-value :warn) 900))))
+
