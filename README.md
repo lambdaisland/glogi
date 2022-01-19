@@ -169,6 +169,19 @@ wrap any expression you want to see the value. Spy expressions are logged at the
 [my.ns] {:spy (+ x x) :=> 4}
 ```
 
+If you pass multiple values to spy, all will be printed:
+
+``` clojure
+(let [x (+ 1 1)
+      y (spy x (+ x x))]
+  (+ x y))
+;;=> 6
+```
+
+```
+[my.ns] {:spy [x 2 (+ x x) 4]}
+```
+
 ### Special keys
 
 Two keywords have a special meaning in logging calls.

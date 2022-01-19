@@ -27,6 +27,5 @@
     (log/spy example-val)
     (log/spy :spy1 example-val)
     (log/remove-handler handler)
-
     (is (= (log/level-value :warn) 900))))
 

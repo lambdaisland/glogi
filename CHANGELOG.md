@@ -2,6 +2,8 @@
 
 ## Added
 
+- Add support for logging multiple forms with `spy`.
+
 ## Fixed
 
 ## Changed
