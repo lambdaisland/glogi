@@ -169,17 +169,21 @@ wrap any expression you want to see the value. Spy expressions are logged at the
 [my.ns] {:spy (+ x x) :=> 4}
 ```
 
+As you may have noticed that, unlike `js/console.log` or `prn`, `spy` returns
+the value of the expression so you can wrap expressions with it without
+disrupting the flow of your program.
+
 If you pass multiple values to spy, all will be printed:
 
 ``` clojure
-(let [x (+ 1 1)
-      y (spy x (+ x x))]
-  (+ x y))
-;;=> 6
+(fn [{:keys [host port path protocol] :as config}]
+  (spy host port)
+  ;;...
+  )
 ```
 
 ```
-[my.ns] {:spy [x 2 (+ x x) 4]}
+[my.ns] {:spy [host "localhost" port 8080]}
 ```
 
 ### Special keys
