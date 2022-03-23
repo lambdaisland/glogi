@@ -10,6 +10,9 @@ For more info see the accompanying blog post: [ClojureScript logging with goog.l
 
 ## Installation
 
+> **WARNING**: There are two packages with different artefact IDs published on clojars. One is `com.lambdaisland/glogi` and another is `lambdaisland/glogi` (without the `com.`). Please migrate your dependency to `com.lambdaisland/glogi` as this is the only one which recieves new updates.
+> We apologise for this confusion, but we had to make some changes to stay in accordance with the clojars policy.
+
 deps.edn
 
 ``` clojure
