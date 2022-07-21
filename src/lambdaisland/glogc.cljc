@@ -56,7 +56,7 @@
         (target :clj `(pedestal/spy ~expr)
                 :cljs `(glogi/spy ~expr)))
        ([expr & exprs]
-        (target :clj `(pedestal/spy ~expr)
+        (target :clj `(pedestal/spy [ ~expr ~@exprs])
                 :cljs `(glogi/spy ~expr ~@exprs))))
 
      (defmacro with-context [ctx-map & body]
