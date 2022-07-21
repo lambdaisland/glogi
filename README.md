@@ -186,6 +186,13 @@ If you pass multiple values to spy, all will be printed:
 [my.ns] {:spy [host "localhost" port 8080]}
 ```
 
+This will be logged slighly diferently on Clojure, due to Glogc being a thin wrapper
+and Pedestal not supporting multiple values:
+
+```
+[my.ns] {:spy [host port] :value [ "localhost"8080]}
+```
+
 ### Special keys
 
 Two keywords have a special meaning in logging calls.
