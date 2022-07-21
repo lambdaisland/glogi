@@ -169,7 +169,7 @@ wrap any expression you want to see the value. Spy expressions are logged at the
 [my.ns] {:spy (+ x x) :=> 4}
 ```
 
-As you may have noticed that, unlike `js/console.log` or `prn`, `spy` returns
+As you may have noticed, unlike `js/console.log` or `prn`, `spy` returns
 the value of the expression so you can wrap expressions with it without
 disrupting the flow of your program.
 
@@ -186,12 +186,15 @@ If you pass multiple values to spy, all will be printed:
 [my.ns] {:spy [host "localhost" port 8080]}
 ```
 
-This will be logged slighly diferently on Clojure, due to Glogc being a thin wrapper
-and Pedestal not supporting multiple values:
+This will be logged slighly diferently on Clojure. This is because Pedestal
+doesn't directly support multiple values to spy, and Glogc tries to be a
+thin wrapper:
 
 ```
-[my.ns] {:spy [host port] :value [ "localhost"8080]}
+[my.ns] {:spy [host port] :value ["localhost" 8080]}
 ```
+If you call spy on multiple values, the last value will be returned, analogous
+to `do`.
 
 ### Special keys
 
