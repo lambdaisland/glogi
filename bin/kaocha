@@ -4,7 +4,7 @@ set -ex
 
 [ -d node_modules/ws ] || npm install ws
 
-clojure -A:dev:test:cljs764 -M -m kaocha.runner "$@"
-clojure -A:dev:test:cljs844 -M -m kaocha.runner "$@"
-clojure -A:dev:test:cljs896 -M -m kaocha.runner "$@"
-clojure -A:dev:test:cljs-latest -M -m kaocha.runner "$@"
+clojure -A:dev:pedestal:test:cljs764 -M -m kaocha.runner "$@"
+clojure -A:dev:pedestal:test:cljs844 -M -m kaocha.runner "$@"
+clojure -A:dev:pedestal:test:cljs896 -M -m kaocha.runner "$@"
+clojure -A:dev:pedestal:test:cljs-latest -M -m kaocha.runner "$@"

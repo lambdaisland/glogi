@@ -51,9 +51,13 @@
        (target :clj  (#'pedestal/log-expr &form :error keyvals)
                :cljs (#'glogi/log-expr &form :error keyvals)))
 
-     (defmacro spy [expr]
-       (target :clj `(pedestal/spy ~expr)
-               :cljs `(glogi/spy ~expr)))
+     (defmacro spy
+       ([expr]
+        (target :clj `(pedestal/spy ~expr)
+                :cljs `(glogi/spy ~expr)))
+       ([expr & exprs]
+        (target :clj `(last (pedestal/spy [ ~expr ~@exprs]))
+                :cljs `(glogi/spy ~expr ~@exprs))))
 
      (defmacro with-context [ctx-map & body]
        `(pedestal/with-context ~ctx-map ~@body))
