@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  clojure: lambdaisland/clojure@0.0.6
+  clojure: lambdaisland/clojure@0.0.8
 
 commands:
   checkout_and_run:
@@ -27,8 +27,16 @@ jobs:
   java-16:
     executor: clojure/openjdk16
     steps: [{checkout_and_run: {}}]
+  java-17:
+    executor: clojure/openjdk17
+    steps: [{checkout_and_run: {}}]
+  java-19:
+    executor: clojure/openjdk19
+    steps: [{checkout_and_run: {}}]
 
 workflows:
   kaocha_test:
     jobs:
       - java-16
+      - java-17
+      - java-19
