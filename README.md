@@ -16,13 +16,13 @@ For more info see the accompanying blog post: [ClojureScript logging with goog.l
 deps.edn
 
 ``` clojure
-com.lambdaisland/glogi {:mvn/version "1.1.144"}
+com.lambdaisland/glogi {:mvn/version "1.2.164"}
 ```
 
 project.clj
 
 ``` clojure
-[com.lambdaisland/glogi "1.1.144"]
+[com.lambdaisland/glogi "1.2.164"]
 ```
 
 ## Quickstart
