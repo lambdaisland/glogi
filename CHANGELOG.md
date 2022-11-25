@@ -6,7 +6,11 @@
 
 ## Fixed
 
+- Release under `com.lambdaisland` as well as `lambdaisland`, see https://github.com/lambdaisland/open-source/issues/9
+
 ## Changed
+
+- Version bumps
 
 # 1.1.144 (2021-12-14 / 6f83c7d)
 
