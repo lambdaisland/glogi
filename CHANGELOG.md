@@ -6,6 +6,9 @@
 
 ## Changed
 
+- Modified an internal function so that code emitted by logging macros can be
+  DCE'd when the user disables logging.
+
 # 1.2.164 (2022-11-25 / 9a89583)
 
 ## Added
