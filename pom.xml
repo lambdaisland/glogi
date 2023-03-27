@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.lambdaisland</groupId>
   <artifactId>glogi</artifactId>
-  <version>1.2.164</version>
+  <version>1.3.169</version>
   <name>glogi</name>
   <description>A thin wrapper around `goog.log` inspired by `pedestal.log`.</description>
   <url>https://github.com/lambdaisland/glogi</url>
@@ -25,7 +25,7 @@
     <url>https://github.com/lambdaisland/glogi</url>
     <connection>scm:git:git://github.com/lambdaisland/glogi.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/glogi.git</developerConnection>
-    <tag>3173a195f7c0d2d56fbbde25f65c6f9dbb9fc6c4</tag>
+    <tag>57c3e36164bc43fdecccfa93265b685f245fa50e</tag>
   </scm>
   <dependencies>
     <dependency>
@@ -59,7 +59,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <git-revision>3173a195f7c0d2d56fbbde25f65c6f9dbb9fc6c4</git-revision>
+              <git-revision>57c3e36164bc43fdecccfa93265b685f245fa50e</git-revision>
             </manifestEntries>
           </archive>
         </configuration>
