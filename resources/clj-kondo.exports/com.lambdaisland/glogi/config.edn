@@ -1,0 +1,8 @@
+{:linters
+ {:type-mismatch
+  {:namespaces
+   {lambdaisland.glogi
+    {info {:arities {:varargs {:args [{:op :rest :spec [:any :any]}]}}}
+     error {:arities {:varargs {:args [{:op :rest :spec [:any :any]}]}}}
+     warn {:arities {:varargs {:args [{:op :rest :spec [:any :any]}]}}}
+     debug {:arities {:varargs {:args [{:op :rest :spec [:any :any]}]}}}}}}}}
