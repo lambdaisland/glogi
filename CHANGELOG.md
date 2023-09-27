@@ -2,15 +2,9 @@
 
 ## Added
 
-## Fixed
-
-## Changed
+- clj-kondo config to warn when using an add number of arguments
 
 # 1.3.169 (2023-03-27 / 109b82e)
-
-## Added
-
-## Fixed
 
 ## Changed
 
