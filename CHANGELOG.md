@@ -4,6 +4,8 @@
 
 - clj-kondo config to warn when using an add number of arguments
 
+- Update passed in `:line` to take precedence over metadata's `:line`
+
 # 1.3.169 (2023-03-27 / 109b82e)
 
 ## Changed

@@ -2,14 +2,15 @@
 
 (defn- log-expr [form level keyvals]
   (let [keyvals-map (apply array-map keyvals)
-        formatter (::formatter keyvals-map 'identity)]
+        formatter (::formatter keyvals-map 'identity)
+        line (:line keyvals-map (:line (meta form)))]
     `(when ~(with-meta 'goog.debug.LOGGING_ENABLED {:tag 'boolean})
        (log ~(::logger keyvals-map (str *ns*))
             ~level
             (~formatter
              ~(-> keyvals-map
                   (dissoc ::logger)
-                  (assoc :line (:line (meta form)))))
+                  (assoc :line line)))
             ~(:exception keyvals-map)))))
 
 (defmacro shout [& keyvals]
