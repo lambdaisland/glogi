@@ -224,6 +224,15 @@ in `:closure-defines` in your compiler options.
 - `"true"` format using CSS
 - `"false"` format  as plain text
 
+### Timestamps
+
+You can have each message get prefixed with a timestamp like this:
+
+```
+:closure-defines
+{lambdaisland.glogi.console/timestamp "true"}
+```
+
 ### Logging in production
 
 Production builds typically have `goog.DEBUG` set to `false`. This strips out
