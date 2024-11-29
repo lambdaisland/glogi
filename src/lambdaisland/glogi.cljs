@@ -7,7 +7,7 @@
   (:import [goog.debug Console FancyWindow DivConsole])
   (:require-macros [lambdaisland.glogi]))
 
-(def Level
+(def ^js Level
   (if (exists? glog/Level)
     glog/Level
     goog.debug.logger.Level))
@@ -16,22 +16,22 @@
 ;; can retain backward compatibility. The static method call is the newer
 ;; version.
 
-(defn- goog-setLevel [logger level]
+(defn- goog-setLevel [^js logger ^js level]
   (if (exists? glog/setLevel)
     (^:cljs.analyzer/no-resolve glog/setLevel logger level)
     (.setLevel logger level)))
 
-(defn- goog-logRecord [logger record]
+(defn- goog-logRecord [^js logger ^js record]
   (if (exists? glog/publishLogRecord)
     (^:cljs.analyzer/no-resolve glog/publishLogRecord logger record)
     (.logRecord logger record)))
 
-(defn- goog-addHandler [logger handler]
+(defn- goog-addHandler [^js logger ^js handler]
   (if (exists? glog/addHandler)
     (glog/addHandler logger handler)
     (.addHandler logger handler)))
 
-(defn- goog-removeHandler [logger handler]
+(defn- goog-removeHandler [^js logger ^js handler]
   (if (exists? glog/removeHandler)
     (glog/removeHandler logger handler)
     (.removeHandler logger handler)))
@@ -151,7 +151,7 @@
   use [lambdaisland.glogi.console/install!] for a version that plays nicely with
   cljs-devtools."
   []
-  (when-let [instance Console/instance]
+  (when-let [^js instance Console/instance]
     (.setCapturing instance true)
     (let [instance (Console.)]
       (set! Console/instance instance)

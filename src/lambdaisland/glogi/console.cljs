@@ -7,6 +7,7 @@
 ;; By default we do CSS colorization on non-IE browsers only. You can change
 ;; this in your build with :closure-defines. Possible values: "auto" "true" "false"
 (goog-define colorize "auto")
+(goog-define timestamp "false")
 
 (defn log-method [level]
   (condp #(>= %2 %1) (glogi/level-value level)
@@ -16,14 +17,25 @@
     (glogi/level-value :config)  "log"
     "log"))
 
+(defn timestamp-now []
+  (subs (.toISOString (js/Date.)) 11 23))
+
 (defn format-raw [{:keys [level logger-name message exception]}]
   [(str "[" logger-name "]") message])
 
 (defn format-css [{:keys [level logger-name message exception]}]
-  (print/format level logger-name message))
+  (if (= "true" timestamp)
+    (-> ["" []]
+        (print/add (timestamp-now) :white :black)
+        (print/add " " :black :white)
+        (print/format level logger-name message))
+    (print/format level logger-name message)))
 
 (defn format-plain [{:keys [level logger-name message exception]}]
-  [(str "[" logger-name "]") (pr-str message)])
+  [(str (when (= "true" timestamp)
+          (str (timestamp-now) " "))
+        "[" logger-name "]")
+   (pr-str message)])
 
 (defn make-console-log [format]
   (fn [{:keys [logger-name level exception] :as record}]

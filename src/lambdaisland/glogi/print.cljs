@@ -131,12 +131,15 @@
     :else
     (add res (pr-str value) :gray5)))
 
-(defn format [level logger-name value]
-  (let [color (level-color level)
-        [res res-css] (-> ["" []]
-                          (add "[" :white color)
-                          (add logger-name :white color)
-                          (add "]" :white color)
-                          (add " ")
-                          (print-console-log-css value))]
-    (cons res res-css)))
+(defn format
+  ([level logger-name value]
+   (format ["" []] level logger-name value))
+  ([init level logger-name value]
+   (let [color (level-color level)
+         [res res-css] (-> init
+                           (add "[" :white color)
+                           (add logger-name :white color)
+                           (add "]" :white color)
+                           (add " ")
+                           (print-console-log-css value))]
+     (cons res res-css))))

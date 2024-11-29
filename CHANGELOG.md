@@ -3,6 +3,8 @@
 ## Added
 
 - clj-kondo config to warn when using an add number of arguments
+- `lambdaisland.glogi.console/timestamp` goog-define, set to `"true"` to prepend
+  each log message with a timestamp
 
 # 1.3.169 (2023-03-27 / 109b82e)
 
