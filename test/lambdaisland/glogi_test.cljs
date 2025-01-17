@@ -13,6 +13,7 @@
     (log/warn :get :these :log :messages)
     (log/fine :not :you)
     (log/info :to :show :up :here)
+    (log/info :over :ride :line -1)
     (is (= [{:sequenceNumber 0
              :level :warning
              :message {:get :these :log :messages :line 13}
@@ -21,6 +22,10 @@
             {:sequenceNumber 0
              :level :info
              :message {:to :show :up :here :line 15}
+             :logger-name "lambdaisland.glogi-test" :exception nil}
+            {:sequenceNumber 0
+             :level :info
+             :message {:over :ride :line -1}
              :logger-name "lambdaisland.glogi-test" :exception nil}]
            (map #(dissoc % :time) @captured)))
     (log/set-levels '{lambdaisland.glogi-test :debug}) ;Debug covers spy
