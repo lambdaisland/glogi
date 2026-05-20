@@ -60,10 +60,4 @@
                 :cljs `(glogi/spy ~expr ~@exprs))))
 
      (defmacro with-context [ctx-map & body]
-       `(pedestal/with-context ~ctx-map ~@body))
-
-     (def format-name pedestal/format-name)
-     (def counter pedestal/counter)
-     (def gauge pedestal/gauge)
-     (def histogram pedestal/histogram)
-     (def meter pedestal/meter)))
+       `(pedestal/with-context ~ctx-map ~@body))))

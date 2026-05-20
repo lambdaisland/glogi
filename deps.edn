@@ -3,7 +3,7 @@
 
  :aliases
  {:dev
-  {:extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.18"}}}
+  {:extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.20"}}}
 
   ;; Before Closure logging API changes
   :cljs764
@@ -22,9 +22,9 @@
 
   :test
   {:extra-paths ["test"]
-   :extra-deps {lambdaisland/kaocha {:mvn/version "1.71.1119"}
-                com.lambdaisland/kaocha-cljs {:mvn/version "1.4.130"}
-                lambdaisland/kaocha-junit-xml {:mvn/version "RELEASE"}}}
+   :extra-deps {lambdaisland/kaocha {:mvn/version "1.91.1392"}
+                com.lambdaisland/kaocha-cljs {:mvn/version "1.9.181"}
+                lambdaisland/kaocha-junit-xml {:mvn/version "1.17.101"}}}
 
   :pedestal
-  {:extra-deps {io.pedestal/pedestal.log {:mvn/version "0.5.10"}}}}}
+  {:extra-deps {io.pedestal/pedestal.log {:mvn/version "0.8.1"}}}}}

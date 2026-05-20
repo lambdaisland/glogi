@@ -1,5 +1,22 @@
 # Unreleased
 
+## Removed
+
+- **BREAKING** The vars `format-name`, `counter`, `gauge`, `histogram`, and
+  `meter` have been removed from `lambdaisland.glogc`, since they have also been
+  removed upstream in `io.pedestal.log`. The Glogc namespace was meant as a
+  drop-in replacement for io.pedestal.log, but one that can also be used in
+  `.cljc` files, by using Glogi logging on cljs, and pedestal.log on clj. Since
+  these vars were only available in the clj version, they defeat that purpose
+  and probably shouldn't have been added in the first place. Our assumption is
+  that these are not commonly used.
+  
+## Changed
+
+- `io.pedestal.log` has been bumped from 0.5.x to 0.8.x. Note that despite the
+  0.x numbering there are substantial breaking changes, but the core logging API
+  seems to remain unchanged.
+
 ## Added
 
 - clj-kondo config to warn when using an add number of arguments
