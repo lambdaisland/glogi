@@ -1,4 +1,4 @@
-# Unreleased
+# 1.4.177 (2026-05-20 / 5feaca2)
 
 ## Removed
 
